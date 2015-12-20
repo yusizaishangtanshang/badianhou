@@ -7,6 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import <MobClick.h>
+
+// 正式
+//static NSString *const UMAnalyticsAppKey = @"555dcb0867e58e8b250038bc";
+// 测试
+static NSString *const UMAnalyticsAppKey = @"55c9fbb367e58e4df10003a9";
 
 @interface AppDelegate ()
 
@@ -17,7 +23,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [application setStatusBarHidden:NO animated:UIStatusBarAnimationFade];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self prepareUmen];
+    
+    
     return YES;
+}
+
+- (void)prepareUmen{
+    [MobClick setLogEnabled:YES];
+    [MobClick setLogSendInterval:90.0];
+    [MobClick setAppVersion:XcodeAppVersion];
+    [MobClick startWithAppkey:UMAnalyticsAppKey];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -1,0 +1,56 @@
+//
+//  Macro.pch
+//  badianhou
+//
+//  Created by 贺东方 on 15/12/20.
+//  Copyright © 2015年 hexiaoyi. All rights reserved.
+//
+
+#ifndef Macro_pch
+#define Macro_pch
+
+#define color(r, g, b) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:1.0]
+
+//屏幕高度
+#define kScreenHeight MAX([UIScreen mainScreen].bounds.size.width, \
+[UIScreen mainScreen].bounds.size.height)
+//屏幕宽度
+#define kScreenWidth  MIN([UIScreen mainScreen].bounds.size.width, \
+[UIScreen mainScreen].bounds.size.height)
+
+#define isiPhone4S kScreenHeight == 480
+
+#define isiPhone5 kScreenHeight == 568
+
+
+#define isiPhone6 kScreenHeight == 667
+
+#pragma mark --分享--
+#define UMSocialAppKey @"555dcb0867e58e8b250038bc"
+
+#pragma mark 微信
+#define WXAppKey @"wxd3fc490011a6381e"
+#define WXAppSecret @"1d9786fe62b67ec66d0389f75889384f"
+
+#pragma mark 微博
+#define WeiBoAppKey @"970339748"
+#define WeiBoAppSecret @"465e6dd66ff54b5ad2114332e978eaaa"
+#define WeiBoRedirectURL @"http://sns.whalecloud.com/sina2/callback"
+
+#pragma mark --项目颜色--
+#define MainColor color(52, 152, 219)
+#define BlackTextColor color(97, 92, 93)
+#define GrayTextColor color(149, 141, 143)
+#define GrayBgColor color(239, 239, 239)
+
+#ifdef DEBUG
+#define MYLog(...) NSLog(__VA_ARGS__)
+#else
+#define MYLog(a...) do { } while(0)
+#endif
+
+
+
+#endif /* Macro_pch */
+
+
