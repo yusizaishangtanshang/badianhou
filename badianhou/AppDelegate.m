@@ -8,14 +8,15 @@
 
 #import "AppDelegate.h"
 #import <MobClick.h>
-
+#import <APService.h>
+#import <UMSocial.h>
 // 正式
 //static NSString *const UMAnalyticsAppKey = @"555dcb0867e58e8b250038bc";
 // 测试
 static NSString *const UMAnalyticsAppKey = @"55c9fbb367e58e4df10003a9";
 
 @interface AppDelegate ()
-
+@property (nonatomic,assign) BOOL isReceive;
 @end
 
 @implementation AppDelegate
@@ -26,16 +27,30 @@ static NSString *const UMAnalyticsAppKey = @"55c9fbb367e58e4df10003a9";
     [application setStatusBarHidden:NO animated:UIStatusBarAnimationFade];
     self.window.backgroundColor = [UIColor whiteColor];
     [self prepareUmen];
-    
-    
+    [APService setupWithOption:launchOptions];
+    if (DeviceVersion >= 8.0) {
+        [APService registerForRemoteNotificationTypes:UIUserNotificationTypeBadge |UIUserNotificationTypeSound |UIUserNotificationTypeAlert categories:nil];
+    }
+    else
+    {
+        [APService registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound categories:nil];
+    }
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    [APService setBadge:0];
+    [APService setupWithOption:launchOptions];
+    NSDictionary *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (notification) {
+        self.isReceive = YES;
+        self.isClickNotification = YES;
+        if ([[notification valueForKey:@"contengType"]isEqualToString:@"CONSULTATION"]) {
+            self.notificationCID = [notification valueForKey:@"bussinessId"];
+        }
+    }
     return YES;
 }
 
 - (void)prepareUmen{
-    [MobClick setLogEnabled:YES];
-    [MobClick setLogSendInterval:90.0];
-    [MobClick setAppVersion:XcodeAppVersion];
-    [MobClick startWithAppkey:UMAnalyticsAppKey];
+    [UMSocialData ]
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -11,7 +11,9 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (copy,nonatomic) NSString *chatConsultationId;
+@property (copy,nonatomic) NSString *notificationCID;
+@property (assign,nonatomic) BOOL isClickNotification;
 
 @end
 

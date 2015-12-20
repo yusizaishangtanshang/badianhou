@@ -17,7 +17,7 @@
 //屏幕宽度
 #define kScreenWidth  MIN([UIScreen mainScreen].bounds.size.width, \
 [UIScreen mainScreen].bounds.size.height)
-
+#define DeviceVersion [[UIDevice currentDevice].systemVersion floatValue]
 #define isiPhone4S kScreenHeight == 480
 
 #define isiPhone5 kScreenHeight == 568
